@@ -1,6 +1,6 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
-# linux-dotnetcoresqldbapp-cus
+# dotnetcoresqldbapp-linux-cus
 
 name: Build and deploy 
 
@@ -54,7 +54,13 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'dotnetcoresqldb0421app'
+        app-name: 'dotnetcoresqldbapp-linux-cus'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5d309fd179a64c07a50a2f39b2cc093b }}
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_71DA5CBEDAD1464CAE987F457D93BCEF }}
         package: ./published
+
+    - name: Publish Artifacts
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: webapp
+        path: ./published
